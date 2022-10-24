@@ -37,9 +37,9 @@ provider "azurerm" {
 
 
   # Create a subnet within the vnet2
-  #resource "azurerm_subnet" "mysubnet2" {
-  #  name = "VLAN-002"
-  #  resource_group_name = azurerm_resource_group.myrg.name
-  #  virtual_network_name = azurerm_virtual_network.myvnet.name
-  # address_prefixes = [ "10.0.2.0/24" ]
-  #}
+  resource "azurerm_subnet" "mysubnet2" {
+    name = "VLAN-002"
+    resource_group_name = azurerm_resource_group.myrg.name
+    virtual_network_name = azurerm_virtual_network.myvnet.name
+   address_prefixes = [ "10.0.2.0/24" ]
+  }

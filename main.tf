@@ -52,3 +52,29 @@ provider "azurerm" {
    address_prefixes = [ "10.0.3.0/24" ]
   }
   
+
+  resource "azure_public_ip" "myGateway" {
+  name = "nat-gateway-public"
+  location = azurerm_resource_group.myrg.location
+  resource_group_name = azurerm_resource_group.myrg.name
+  allocation_method = "Static"
+  sku = "Standard"
+  zones = ["1"]
+  }
+
+  resource "azurerm_public_ip_prefix" "myGateway" {
+  name                = "nat-gateway-publicIPPrefix"
+  location = azurerm_resource_group.myrg.location
+  resource_group_name = azurerm_resource_group.myrg.name
+  prefix_length       = 30
+  zones               = ["1"]
+}
+
+resource "azurerm_nat_gateway" "myGateway" {
+  name                    = "nat-Gateway"
+  location = azurerm_resource_group.myrg.location
+  resource_group_name = azurerm_resource_group.myrg.name
+  sku_name                = "Standard"
+  idle_timeout_in_minutes = 10
+  zones                   = ["1"]
+}

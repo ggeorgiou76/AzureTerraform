@@ -53,11 +53,10 @@ provider "azurerm" {
   }
   
 
-  resource "azure_public_ip" "myrgpublic" {
-  name = "nat-gateway-public"
-  location = azurerm_resource_group.myrg.location
+
+resource "azurerm_nat_gateway" "myrg" {
+  name                = "example-natgateway"
+   location = azurerm_resource_group.myrg.location
   resource_group_name = azurerm_resource_group.myrg.name
-    allocation_method   = "Static"
-  sku = "Standard"
-  zones = ["1"]
-  }
+}
+

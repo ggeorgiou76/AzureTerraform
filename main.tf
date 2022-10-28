@@ -79,17 +79,13 @@ resource "azurerm_nat_gateway" "myrg" {
 resource "azurerm_management_group" "example_parent" {
   display_name = "ParentGroup"
 
-  subscription_ids = [
-    data.azurerm_subscription.current.subscription_id,
-  ]
+  subscription_ids = "e69b09bc-d4b7-4156-a764-07b93565cefa"
 }
 
 resource "azurerm_management_group" "example_child" {
   display_name               = "ChildGroup"
   parent_management_group_id = azurerm_management_group.example_parent.id
 
-  subscription_ids = [
-    data.azurerm_subscription.current.subscription_id,
-  ]
-  # other subscription IDs can go here
+  subscription_ids = "e69b09bc-d4b7-4156-a764-07b93565cefa"
+    # other subscription IDs can go here
 }

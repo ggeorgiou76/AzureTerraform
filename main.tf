@@ -53,28 +53,4 @@ provider "azurerm" {
   }
   
 
-  resource "azure_public_ip" "myrg" {
-  name = "nat-gateway-public"
-  location = azurerm_resource_group.myrg.location
-  resource_group_name = azurerm_resource_group.myrg.name
-  allocation_method = "Static"
-  sku = "Standard"
-  zones = ["1"]
-  }
-
-  resource "azurerm_public_ip_prefix" "myrg" {
-  name                = "nat-gateway-publicIPPrefix"
-  location = azurerm_resource_group.myrg.location
-  resource_group_name = azurerm_resource_group.myrg.name
-  prefix_length       = 30
-  zones               = ["1"]
-}
-
-resource "azurerm_nat_gateway" "myrg" {
-  name                    = "nat-Gateway"
-  location = azurerm_resource_group.myrg.location
-  resource_group_name = azurerm_resource_group.myrg.name
-  sku_name                = "Standard"
-  idle_timeout_in_minutes = 10
-  zones                   = ["1"]
-}
+ 

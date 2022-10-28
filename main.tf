@@ -56,7 +56,13 @@ provider "azurerm" {
 
 resource "azurerm_nat_gateway" "myrg" {
   name                = "example-natgateway"
-   location = azurerm_resource_group.myrg.location
+  location = azurerm_resource_group.myrg.location
   resource_group_name = azurerm_resource_group.myrg.name
+
+  sku_name                = "Standard"
+  idle_timeout_in_minutes = 10
+  zones                   = ["1"]
+
+
 }
 
